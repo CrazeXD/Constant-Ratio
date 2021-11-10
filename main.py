@@ -33,13 +33,19 @@ class getratio(object):
             else:
                 return False
         return True
+    def makeequation(self, correct = True):
+        if correct:
+                ratio = self.changes[0]
+                testy = self.table[0][1]
+                testx = self.table[0][0]
+                constx = ratio**testx
+                a = testy/constx
+                print(f"f(x) = {a}*{ratio}^x")
+        else:
+            print("No Constant")
+
 if __name__ == '__main__':
     obj = getratio(rows, table)
     obj.findratios()
     a = obj.checkratio(obj.changes)
-    if a:
-        print(f"Common Ratio = {obj.changes[0]}")
-    else:
-        print('No constant ratio')
-        time.sleep(10)
-        sys.exit()
+    obj.makeequation(a)
