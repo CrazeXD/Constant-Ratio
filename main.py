@@ -2,6 +2,10 @@ import sys
 import time
 
 rows = int(input("Enter the number of rows in your table:\n"))
+if rows == 0:
+    sys.exit()
+elif rows == 1:
+    sys.exit()
 table = []
 class getratio(object):
     def __init__(self, rows, table):
@@ -16,29 +20,26 @@ class getratio(object):
             table.append(self.currentrow)
     def findratios(self):
         self.changes = []
-        for a in range(self.rows-1):
-            if a==0:
+        for a in range(self.rows):
+            if a>=1:
+                self.ychangecurrentrow = table[a][1]/table[a-1][1]
+                self.xchangecurrentrow = table[a][0]-table[a-1][0]
+                self.currentrowratio = self.ychangecurrentrow/self.xchangecurrentrow
+                self.changes.append(self.currentrowratio)
+    def checkratio(self, list):
+        for x in list:
+            if x==list[0]:
                 pass
             else:
-                self.ychangecurrentrow = table[a][1]/table[a-1][1]
-                self.xchangecurrentrow = table[a][0]/table[a-1][0]
-                self.currentrow = self.ychangecurrentrow/self.xchangecurrentrow
-                self.changes.append(self.currentrow)
-        
-    def checkratios(self):
-        self.nochanges = self.rows-2
-        for i in range(self.nochanges):
-            for j in range(self.nochanges-i):
-                if self.changes[i] == self.changes[j]:
-                    pass
-                else:
-                    print("No common factor detected")
-                    time.sleep(10)
-                    sys.exit()
+                return False
         return True
-
 if __name__ == '__main__':
     obj = getratio(rows, table)
     obj.findratios()
-    if obj.checkratios:
+    a = obj.checkratio(obj.changes)
+    if a:
         print(f"Common Ratio = {obj.changes[0]}")
+    else:
+        print('No constant ratio')
+        time.sleep(10)
+        sys.exit()
