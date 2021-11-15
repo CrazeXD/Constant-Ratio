@@ -13,8 +13,8 @@ class getratio(object):
         self.table = table
         for i in range(rows):
             self.currentrow = []
-            self.x = int(input("Enter the x value:\n"))
-            self.y = int(input("Enter the y value:\n"))
+            self.x = float(input("Enter the x value:\n"))
+            self.y = float(input("Enter the y value:\n"))
             self.currentrow.append(self.x)
             self.currentrow.append(self.y)
             table.append(self.currentrow)
